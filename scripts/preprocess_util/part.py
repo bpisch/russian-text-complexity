@@ -1,7 +1,7 @@
 import os
 import sys
 
-def split_file(input_file, num_parts):
+def split_file(input_file, output_prefix, num_parts):
     # Check if the input file exists
     if not os.path.isfile(input_file):
         print(f"File {input_file} does not exist.")
@@ -24,7 +24,7 @@ def split_file(input_file, num_parts):
         part_lines = lines[start:end]
         
         # Save the current part to a new file
-        output_file = f"{input_file}_part{i+1}.txt"
+        output_file = f"{output_prefix}_part{i+1}.s"
         with open(output_file, 'w', encoding='utf-8') as part_file:
             part_file.writelines(part_lines)
         
@@ -34,13 +34,14 @@ def split_file(input_file, num_parts):
 
 if __name__ == "__main__":
     # Ensure the correct number of arguments are passed
-    if len(sys.argv) != 3:
-        print("Usage: python split_file.py <file_name> <num_parts>")
+    if len(sys.argv) != 4:
+        print("Usage: python split_file.py <file_name> <output_prefix> <num_parts>")
         sys.exit(1)
     
     # Get file name and number of parts from command line arguments
     input_file = sys.argv[1]
-    num_parts = int(sys.argv[2])
+    output_prefix = sys.argv[2]
+    num_parts = int(sys.argv[3])
     
     # Call the function to split the file
-    split_file(input_file, num_parts)
+    split_file(input_file, output_prefix, num_parts)

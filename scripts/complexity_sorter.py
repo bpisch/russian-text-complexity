@@ -23,7 +23,7 @@ def sort_values(input_file, output_file, sort_by):
                 dc_ext_value = float(part.split('=')[1])  # Convert to float
 
         # Ensure at least one value is found
-        if fkg_value is not None and dc_value is not None:
+        if fkg_value is not None or dc_value is not None or dc_ext_value is not None:
             if sort_by == 'fkg':
                 lines_with_value.append((fkg_value, line.strip()))
             elif sort_by == 'dc':
